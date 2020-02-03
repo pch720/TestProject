@@ -72,7 +72,7 @@
 </header>
 
 <!-- 로그인 창 -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div sec:authorize="isAnonymous()" class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content"
          style="max-width: 684px;height:400px; ;margin: 0px auto;background-color: #ecb807;border: 0px;border-radius: 35px;">
@@ -111,7 +111,7 @@
 </div>
 
 <!-- 유저 창 -->
-<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div sec:authorize="isAuthenticated()" class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content"
          style="max-width: 684px;height:400px; ;margin: 0px auto;background-color: #ecb807;border: 0px;border-radius: 35px;">
@@ -125,7 +125,7 @@
             <hr>
             <input type="button" onclick="location='main.do'" class="btn btn-primary btn-user btn-block" value="들어가기"style="margin-top:10%;">
             <hr>
-            <input type="button" onclick="location='main.do'" class="btn btn-danger btn-user btn-block" value="로그아웃">
+            <a th:href="@{/user/logout}" class="btn btn-danger btn-user btn-block">로그아웃</a>
             <hr>
           </div>
         </div>

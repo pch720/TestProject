@@ -30,14 +30,13 @@ public class MemberController {
 
     // 로그인 결과 페이지
     @GetMapping("/user/login/result")
-    public String dispLoginResult() {
-        return "/";
+    public String dispLoginResult() { return "redirect:/";
     }
 
     // 로그아웃 결과 페이지
     @GetMapping("/user/logout/result")
     public String dispLogout() {
-        return "/";
+        return "redirect:/";
     }
 
     // 접근 거부 페이지
