@@ -23,7 +23,7 @@
   <style>
     .modal {
       top: 20%;
-      margin-top: -5%;
+      margin-top: -10%;
     }
     body::-webkit-scrollbar{display: none;}
   </style>
@@ -81,7 +81,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <!-- Portfolio Modal - Title -->
-            <i class="fas fa-users"style="font-size:4rem;margin-bottom:2%;"></i>
+            <i class="fas fa-users"style="font-size:3rem;margin-bottom:2%;"></i>
             <h2 class="portfolio-modal-title">로그인 하기</h2>
             <hr>
             <form class="user" action="/user/login" method="POST">
@@ -120,7 +120,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <!-- Portfolio Modal - Title -->
-            <i class="fas fa-users"style="font-size:4rem;margin-bottom:2%;"></i>
+            <i class="fas fa-users"style="font-size:3rem;margin-bottom:2%;"></i>
             <h2 class="portfolio-modal-title">반갑습니다. ***회원님</h2>
             <hr>
             <input type="button" onclick="location='main.do'" class="btn btn-primary btn-user btn-block" value="들어가기"style="margin-top:10%;">
@@ -143,36 +143,36 @@
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <!-- Portfolio Modal - Title -->
-            <i class="fas fa-users"style="font-size:4rem;margin-bottom:2%;"></i>
+            <i class="fas fa-users"style="font-size:3rem;margin-bottom:2%;"></i>
             <h2 class="portfolio-modal-title">회원가입 하기</h2>
             <hr>
-            <form th:action="@{/user/signup}" class="user" method="POST">
+            <form th:action="@{/user/signup}" class="user" method="POST" onsubmit="return Reg();">
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="userName" id="Regname" placeholder="이름" onkeyup="javascript:ne();">
+                <input type="text" class="form-control form-control-user" name="userName" id="Regname" placeholder="이름" onkeyup="javascript:ruhs(0);" value="">
                 <div class="small" id="nb" style="display: none;">
                   이름을 입력해주세요.</div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="userNn" id="Regnn" placeholder="닉네임" onkeyup="javascript:ne();">
+                <input type="text" class="form-control form-control-user" name="userNn" id="Regnn" placeholder="닉네임" onkeyup="javascript:ruhs(1);">
                 <div class="small" id="nnb" style="display: none;">
                   닉네임을 입력해주세요.</div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="email" id="Regemail" placeholder="이메일 주소" onkeyup="javascript:ee();">
+                <input type="text" class="form-control form-control-user" name="email" id="Regemail" placeholder="이메일 주소" onkeyup="javascript:ruhs(2);">
                 <div class="small" id="ee" style="display: none;">
                   이메일 형식에 맞게 입력해주세요.</div>
                 <div class="small" id="eb" style="display: none;">
                   이메일을 입력해주세요.</div>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control form-control-user" name="password" id="Regpw" placeholder="비밀번호" onkeyup="javascript:pe();">
+                <input type="password" class="form-control form-control-user" name="password" id="Regpw" placeholder="비밀번호" onkeyup="javascript:ruhs(3);">
                 <div class="small" id="pe" style="display: none;">
-                  비밀번호는 영문과 숫자를 혼합해 8자 이상으로 입력해주세요.</div>
+                  비밀번호는 영문과 숫자를 혼합해 8자 이상 20자 이하로 입력해주세요.</div>
                 <div class="small" id="pb" style="display: none;">
                   비밀번호를 입력해주세요.</div>
               </div>
               <div class="form-group">
-                <input type="password" class="form-control form-control-user" name="PasswordCheck" id="Regpwc" placeholder="비밀번호 확인" onkeyup="javascript:pce();">
+                <input type="password" class="form-control form-control-user" name="PasswordCheck" id="Regpwc" placeholder="비밀번호 확인" onkeyup="javascript:ruhs(4);">
                 <div class="small" id="pce" style="display: none;">
                   비밀번호와 동일하게 입력해주세요.</div>
               </div>
@@ -181,9 +181,6 @@
                 <input type="submit" class="btn btn-primary btn-user" value="회원가입" style="width: 50%;">
               </div>
             </form>
-            <div class="text-center">
-              <a class="small" style="color: black;">아이디/비밀번호 찾기</a>
-            </div>
           </div>
         </div>
       </div>
@@ -349,46 +346,73 @@
 <script src="js/stylish-portfolio.min.js"></script>
 <script>
   $('#close').click(function(){
-    $('#regModal').modal("hide");
+    let res = confirm('회원가입 창을 닫으시면 입력하신 정보가 초기화됩니다.\n정말 닫으시겠습니까?');
+    if(res){
+      document.getElementById("Regname").value='';
+      document.getElementById("Regnn").value='';
+      document.getElementById("Regemail").value='';
+      document.getElementById("Regpw").value='';
+      document.getElementById("Regpwc").value='';
+      $('#nb').attr('style','display: none;')
+      $('#nnb').attr('style','display: none;')
+      $('#eb').attr('style','display: none;')
+      $('#ee').attr('style','display: none;')
+      $('#pb').attr('style','display: none;')
+      $('#pe').attr('style','display: none;')
+      $('#pce').attr('style','display: none;')
+      $('#regModal').modal("hide");
+    }else{
+      return false;
+    }
   });
-  function ee(){
+  function ruhs(num){
     let emailRule = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-
-    if(!emailRule.test($('#Regemail').val())){
-      $('#ee').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
-      $('#eb').attr('style','display:none;')
+    let pwRule = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,20}$/;
+    if($('#Regname').val()===''){
+      $('#nb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
     }else{
-      $('#ee').attr('style','display:none;')
+      $('#nb').attr('style','display: none;')
+    }
+    if(num>0){
+      if($('#Regnn').val()===''){
+        $('#nnb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+      }else{
+        $('#nnb').attr('style','display: none;')
+      }
+    }
+    if(num>1){
+      if($('#Regemail').val()===''){
+        $('#ee').attr('style','display:none;')
+        $('#eb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+      }else if(!emailRule.test($('#Regemail').val())){
+        $('#ee').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+        $('#eb').attr('style','display:none;')
+      }else{
+        $('#ee').attr('style','display:none;')
+      }
+    }
+    if(num>2){
+      if($('#Regpw').val()===''){
+        $('#pb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+        $('#pe').attr('style','display:none;')
+      }else if(!pwRule.test($('#Regpw').val())){
+        $('#pe').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+        $('#pb').attr('style','display:none;')
+      }else{
+        $('#pe').attr('style','display:none;')
+      }
+      if($('#Regpwc').val()===$('#Regpw').val() || $('#Regpwc').val()===''){
+        $('#pce').attr('style','display:none;')
+      }else{
+        $('#pce').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+      }
     }
   }
-  function pe(){
-    let pwRule = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+  function Reg(){
 
-    if($('#Regemail').val()===''){
-      $('#ee').attr('style','display:none;')
-      $('#eb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
-    }
-    if(!pwRule.test($('#Regpw').val())){
-      $('#pe').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
-      $('#pb').attr('style','display:none;')
-    }else{
-      $('#pe').attr('style','display:none;')
-    }
-    if($('#Regpwc').val()===$('#Regpw').val() || $('#Regpwc').val()===''){
-      $('#pce').attr('style','display:none;')
-    }else{
-      $('#pce').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
-    }
-  }
-  function pce(){
-    if($('#Regpw').val()===''){
-      $('#pb').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
-      $('#pe').attr('style','display:none;')
-    }
-    if($('#Regpwc').val()===$('#Regpw').val()){
-      $('#pce').attr('style','display:none;')
-    }else{
-      $('#pce').attr('style','text-align: left; margin-left: 1%; color: #FF0000; margin-bottom: -2%;')
+    let res=confirm("입력하신 정보로 가입하시겠습니까?")
+    if(!res){
+      return false;
     }
   }
 </script>
