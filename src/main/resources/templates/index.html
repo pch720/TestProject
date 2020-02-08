@@ -148,12 +148,12 @@
             <hr>
             <form th:action="@{/user/signup}" class="user" method="POST" onsubmit="return Reg();">
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="userName" id="Regname" placeholder="이름" onkeyup="javascript:ruhs(0);" value="">
+                <input type="text" class="form-control form-control-user" name="userName" id="Regname" placeholder="이름" onkeyup="javascript:ruhs(0);">
                 <div class="small" id="nb" style="display: none;">
                   이름을 입력해주세요.</div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="userNn" id="Regnn" placeholder="닉네임" onkeyup="javascript:ruhs(1);">
+                <input type="text" class="form-control form-control-user" name="nickname" id="Regnn" placeholder="닉네임" onkeyup="javascript:ruhs(1);">
                 <div class="small" id="nnb" style="display: none;">
                   닉네임을 입력해주세요.</div>
               </div>
