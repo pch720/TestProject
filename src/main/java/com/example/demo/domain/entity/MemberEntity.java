@@ -27,5 +27,5 @@ public class MemberEntity {
         this.id = id;
         this.email = email;
         this.password = password;
-    }
+}
 }
