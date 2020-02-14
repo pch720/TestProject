@@ -77,4 +77,27 @@ function Reg(){
     if(!res){
         return false;
     }
+    let data = {
+        type: $('input:radio[name="type"]:checked').val(),
+        name: document.getElementById('name').value,
+        password: document.getElementById('password').value,
+        open: $('input:radio[name="open"]:checked').val(),
+        openPassword: 'test'
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/api/v1/Member',
+        dataType: 'json',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(data)
+    }).then(function(res) {
+        console.log(res);
+        alert("회원가입에 성공하였습니다!");
+        location.href = '/';
+    }, function(error) {
+        console.log(error);
+        alert("회원가입에 실패하였습니다!");
+        location.href = '#'
+    });
 }
