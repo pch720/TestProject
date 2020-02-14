@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -25,21 +26,9 @@ public class MemberController {
 
 
     // 회원가입 처리
-    @PostMapping("/user/signup")
-    public String execSignup(@Valid MemberDto memberDto, Errors errors, Model model) {
-        if(errors.hasErrors()) {
-            model.addAttribute("memberDto",memberDto);
-
-            Map<String, String> validatorResult = memberService.validateHandling(errors);
-            for (String key : validatorResult.keySet()){
-                model.addAttribute(key, validatorResult.get(key));
-            }
-
-            return "redirect:/";
-        }
-
-        memberService.signUp(memberDto);
-        return "redirect:/";
+    @PostMapping("api/v1/Member")
+    public Long save(@RequestBody MemberDto MDTO) {
+        return memberService.reg(MDTO);
     }
 
     // 로그인 결과 페이지

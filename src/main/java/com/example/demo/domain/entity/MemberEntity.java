@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.nio.file.FileStore;
+import java.util.Date;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -14,18 +16,26 @@ import javax.persistence.*;
 public class MemberEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @Column(length = 50, nullable = false, unique = true)
+    private String nickname;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 50, nullable = false)
+    private Long name;
+
+    @Column(length = 256, nullable = false)
     private String email;
 
-    @Column(length = 100, nullable = false)
+    @Column(length = 256, nullable = false)
     private String password;
 
+    @Column(length = 256, nullable = false)
+    private Date regdate;
     @Builder
-    public MemberEntity(Long id, String email, String password) {
-        this.id = id;
+    public MemberEntity(Long name,String nickname, String email, String password) {
+        this.name = name;
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
-}
+        this.regdate = regdate;
+    }
 }
