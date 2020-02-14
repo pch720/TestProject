@@ -78,11 +78,10 @@ function Reg(){
         return false;
     }
     let data = {
-        type: $('input:radio[name="type"]:checked').val(),
-        name: document.getElementById('name').value,
-        password: document.getElementById('password').value,
-        open: $('input:radio[name="open"]:checked').val(),
-        openPassword: 'test'
+        name: document.getElementById('Regname').value,
+        nickname: document.getElementById('Regnn').value,
+        email: document.getElementById('Regemail').value,
+        password: document.getElementById('Regpw').value
     };
 
     $.ajax({
