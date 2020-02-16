@@ -1,32 +1,16 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Role;
-import com.example.demo.domain.entity.MemberEntity;
 import com.example.demo.domain.repository.MemberRepository;
 import com.example.demo.dto.MemberDto;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class MemberService {
+
     @Transactional
     public Long reg(MemberDto mdto) {
         return MemberRepository.reg(MemberDto.toEntity()).getId();
