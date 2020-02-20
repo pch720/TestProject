@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.Dogether.dto;
 
-import com.example.demo.domain.entity.MemberEntity;
+import com.Dogether.domain.entity.MemberEntity;
 import lombok.*;
 
 import javax.validation.constraints.Email;

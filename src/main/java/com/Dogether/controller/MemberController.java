@@ -1,17 +1,13 @@
-package com.example.demo.controller;
+package com.Dogether.controller;
 
-import com.example.demo.dto.MemberDto;
-import com.example.demo.service.MemberService;
+import com.Dogether.dto.MemberDto;
+import com.Dogether.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
-import java.util.Map;
 @Controller
 @AllArgsConstructor
 public class MemberController {
@@ -22,8 +18,6 @@ public class MemberController {
     public String index() {
         return "/index";
     }
-
-
 
     // 회원가입 처리
     @PostMapping("api/v1/Member")
@@ -46,17 +40,5 @@ public class MemberController {
     @GetMapping("/user/denied")
     public String dispDenied() {
         return "/denied";
-    }
-
-    // 내 정보 페이지
-    @GetMapping("/user/info")
-    public String dispMyInfo() {
-        return "/myinfo";
-    }
-
-    // 어드민 페이지
-    @GetMapping("/admin")
-    public String dispAdmin() {
-        return "/admin";
     }
 }

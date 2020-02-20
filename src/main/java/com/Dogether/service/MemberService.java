@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.Dogether.service;
 
-import com.example.demo.domain.repository.MemberRepository;
-import com.example.demo.dto.MemberDto;
+import com.Dogether.domain.repository.MemberRepository;
+import com.Dogether.dto.MemberDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

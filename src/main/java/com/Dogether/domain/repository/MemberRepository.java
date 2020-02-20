@@ -1,6 +1,6 @@
-package com.example.demo.domain.repository;
+package com.Dogether.domain.repository;
 
-import com.example.demo.domain.entity.MemberEntity;
+import com.Dogether.domain.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
